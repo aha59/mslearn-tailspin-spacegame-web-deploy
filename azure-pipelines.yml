@@ -4,6 +4,7 @@ trigger:
 variables:
   buildConfiguration: 'Release'
   releaseBranchName: 'release'
+  souscription: 'ff4d7d6c-8adc-4b81-9c89-320ed73a43e8'
 
 stages:
 - stage: 'Build'
