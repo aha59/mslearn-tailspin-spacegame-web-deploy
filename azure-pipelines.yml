@@ -74,7 +74,7 @@ stages:
       vmImage: 'Ubuntu-latest'
     # creates an environment if it doesn't exist
     environment: 
-      name: 'smarthotel-dev'
+      name: 'dev'
       resourceName: myVM
       resourceType: virtualMachine
     strategy:
