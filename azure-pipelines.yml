@@ -66,27 +66,19 @@ stages:
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
 
-- stage: 'Dev'
-  displayName: 'Deploy to the dev environment'
-  dependsOn: Build
-  condition:  succeeded()
+- stage: deploy
   jobs:
-  - deployment: Deploy
+  - deployment: DeployWeb
+    displayName: deploy Web App
     pool:
-      vmImage: 'ubuntu-20.04'
-    environment: dev
-    variables:
-    - group: Release
+      vmImage: 'Ubuntu-latest'
+    # creates an environment if it doesn't exist
+    environment: 
+      name: 'smarthotel-dev'
+      resourceName: myVM
+      resourceType: virtualMachine
     strategy:
       runOnce:
         deploy:
           steps:
-          - download: current
-            artifact: drop
-          - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
-#            inputs:
-#              azureSubscription: 'Azure subscription 1'
-#              appType: 'webAppLinux'
-#              appName: '$(WebAppNameDev)'
-#              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+          - script: echo Hello world
